@@ -263,7 +263,7 @@ let cakeRotation = false;
 function animate() {
   requestAnimationFrame(animate);
   if (cakeRotation) {
-    cakeGroup.rotation.y += 0.001;
+    cakeGroup.rotation.y += 0.005;
   }
   // Flicker flames
   for (let i = 0; i < candleCount; i++) {
