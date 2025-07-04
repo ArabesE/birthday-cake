@@ -1,3 +1,9 @@
+// === 0. Celebration Sound ===
+const confettiAudio = new Audio('sounds/confetti.wav');
+confettiAudio.volume = 0.7;
+const musicboxAudio = new Audio('sounds/musicbox.wav');
+musicboxAudio.volume = 0.7;
+
 // --- 3D Birthday Cake Interactive Page ---
 // Uses: three.js, anime.js, canvas-confetti (all via CDN)
 
@@ -227,10 +233,18 @@ function triggerCelebration() {
 
   // 3. Cake rotation starts
   cakeRotation = true;
-  // 4. Confetti bursts
+  // 4. Confetti bursts and sound
   confettiBurst();
-  setTimeout(confettiBurst, 400);
-  // 5. Celebration text fade in
+  try { confettiAudio.currentTime = 0; confettiAudio.play(); } catch(e){}
+  setTimeout(() => {
+    confettiBurst();
+    try { confettiAudio.currentTime = 0; confettiAudio.play(); } catch(e){}
+  }, 400);
+
+  // 5. Musixbox sound
+  try { musicboxAudio.currentTime = 0; musicboxAudio.play(); } catch(e){}
+
+  // 6. Celebration text fade in
   anime({
     targets: celebrationText,
     opacity: 1,
